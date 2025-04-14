@@ -41,19 +41,19 @@ To build an AI agent capable of performing these tasks, we’ll need to integrat
 
 The easiest way to build an AI agent for the use case above is by using the Planner feature available in xpander Workbench. To get started, head over to [https://app.xpander.ai](https://app.xpander.ai/) and sign in with your credentials.
 
-Once you're logged in, you can jump right into the Planner to build your AI agent with a single prompt. Click the **“Create AI Agent”** or **“New AI Agent”** button, and you’ll be prompted to describe what you want your AI agent to do.
+Once you're logged in, you can jump right into the Planner to build your AI agent with a single prompt. Click the “Create AI Agent” or “New AI Agent” button, and you’ll be prompted to describe what you want your AI agent to do.
 
 ![img_2](/images/tutorial-3/xp_img_2.png)
 
 For our use case, a prompt like this works well:
 
-> Build a multi-agent outage manager.
+> _Build a multi-agent outage manager.
 Agent 1: Listen on Slack to the #outage channel for notifications about new outages.
 Agent 2: List all files on Google Drive, find the appropriate Google Docs template for a given input message, and reformat the message accordingly.
-Agent 3: Create a new incident on statuspage.io.
+Agent 3: Create a new incident on statuspage.io._
 > 
 
-Once you click the **“Build AI Agent”** button, xpander handles all the complex backend tasks like infrastructure setup and deployment for you. After about a minute, your agent will be ready, and you'll see a graph visualization similar to the one below:
+Once you click the “Build AI Agent” button, xpander handles all the complex backend tasks like infrastructure setup and deployment for you. After about a minute, your agent will be ready, and you'll see a graph visualization similar to the one below:
 
 ![img_3](/images/tutorial-3/xp_img_3.png)
 
@@ -74,7 +74,7 @@ Although xpander has automatically created a multi-agent system for us, it’s i
 
 If you hover over the Slack Outage Notification Monitor node in the main graph visualization, you’ll see an “Expand” icon. Clicking it will open a new tab showing the internal graph for this specific agent. The graph should look something like this:
 
-![Screenshot 2025-04-12 at 11.58.28.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_11.58.28.png)
+![img_4](/images/tutorial-3/xp_img_4.png)
 
 As you can see, xpander has automatically integrated Slack and its relevant operations that the agent can use to perform its task. If there’s a warning icon on any of the operations, it means xpander still needs permission to access your Slack workspace. To grant access:
 
@@ -87,16 +87,16 @@ Once that’s done, the Slack operations should be fully available for the agent
 
 Since this agent's task is to monitor outage notifications on Slack, we can test it with a simple prompt like:
 
-> *Search for messages about outages in the #outage channel.*
+> _Search for messages about outages in the #outage channel._
 > 
 
 Assume the `#outage` channel contains a message like this:
 
-![Screenshot 2025-04-12 at 12.27.07.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.27.07.png)
+![img_5](/images/tutorial-3/xp_img_5.png)
 
 Paste the prompt into the Chat feature, run it, and observe the real-time workflow of the agent as it processes the task.
 
-![Screenshot 2025-04-12 at 12.01.37.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.01.37.png)
+![img_6](/images/tutorial-3/xp_img_6.png)
 
 As shown above, the agent first uses the “List Team Channel” operation to find the available channels in Slack and locate `#outage`. Then it uses the “Fetch Conversation History” operation to retrieve the raw outage message.
 
@@ -106,17 +106,17 @@ Once you’ve verified that this agent is working as expected, we can move on to
 
 If you hover over the Google Drive Template Processor node in the main graph visualization and click the “Expand” icon, you’ll see the agent’s internal graph, which should look something like this:
 
-![Screenshot 2025-04-12 at 12.16.18.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.16.18.png)
+![img_7](/images/tutorial-3/xp_img_7.png)
 
 Since this agent’s role is to locate the appropriate Google Docs template on Google Drive and reformat the raw outage notification, xpander has automatically integrated the necessary operations to make that possible. If you see a warning icon next to any operation, it means the agent still needs permission to access your Google Drive and Docs. You can grant access by following the same steps outlined in the previous section.
 
 Let’s say we’ve saved the outage message template in a Google Docs file titled “Outage Template”, which looks something like this:
 
-![Screenshot 2025-04-12 at 16.48.36.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_16.48.36.png)
+![img_8](/images/tutorial-3/xp_img_8.png)
 
 This agent's job is to find that document, read its content, and reformat the raw outage notification based on the structure in the template. To test the agent’s workflow, you can use a prompt like:
 
-> *Message: "We are experiencing 'InsufficientCapacityError' when trying to launch a SageMaker endpoint in a eu-central-1 region with ml.g5.12x large instance.”                        Find the "Outage Template" document in Google Docs and read its content. Then, reformat the outage notification above according to the template. Finally, write me the reformatted message here.*
+> _Message: "We are experiencing 'InsufficientCapacityError' when trying to launch a SageMaker endpoint in a eu-central-1 region with ml.g5.12x large instance.”_                       Find the "Outage Template" document in Google Docs and read its content. Then, reformat the outage notification above according to the template. Finally, write me the reformatted message here.*
 > 
 
 Here’s how the agent processes this:
@@ -125,7 +125,7 @@ Here’s how the agent processes this:
 2. Then, it uses “Retrieve Latest Document Version” to access and read the content of the template.
 3. Finally, it reformats the raw outage message according to the structure defined in the template.
 
-![Screenshot 2025-04-12 at 12.14.51.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.14.51.png)
+![img_9](/images/tutorial-3/xp_img_9.png)
 
 Once everything looks good and the agent behaves as expected, we’re ready to move on to testing the third agent.
 
@@ -133,41 +133,36 @@ Once everything looks good and the agent behaves as expected, we’re ready to m
 
 The graph visualization of the Statuspage Incident Manager agent is pretty straightforward, and it should look something like this:
 
-![Screenshot 2025-04-12 at 12.17.54.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.17.54.png)
+![img_10](/images/tutorial-3/xp_img_10.png)
 
 Since this agent is responsible for posting outage incidents on StatusPage, xpander automatically includes two relevant operations for interacting with Statuspage. As with the other integrations, if you see a warning icon next to the Statuspage interface, you'll need to grant xpander permission to access your Statuspage account.
 
 To test the workflow of this agent, let’s assume we already have the reformatted outage message from the previous agent. We can then prompt the agent to post an incident on StatusPage like this:
 
-> ***AWS SERVICE INCIDENT***
+> _AWS SERVICE INCIDENT_
 > 
-
-> ***Problematic AWS Service:**
-Amazon SageMaker*
+> _Problematic AWS Service:_ 
+> _Amazon SageMaker_
 > 
-
-> ***Details:**
-We are currently experiencing an issue with launching a SageMaker endpoint in the eu-central-1 region using the ml.g5.12x large instance due to an 'InsufficientCapacityError'. Our team is actively working to resolve this issue as quickly as possible. We apologize for any inconvenience this may cause and appreciate your patience.*
+> _Details:_
+>_We are currently experiencing an issue with launching a SageMaker endpoint in the eu-central-1 region using the ml.g5.12x large instance due to an 'InsufficientCapacityError'. Our team is actively working to resolve this issue as quickly as possible. We apologize for any inconvenience this may cause and appreciate your patience._
 > 
-
-> ***Next Step:**
-Please monitor our status page for updates and further information.*
+> _Next Step:_
+>_Please monitor our status page for updates and further information._
 > 
-
-> ***Contact:**
-For any urgent inquiries, please contact our support team.*
+> _Contact:_
+>_For any urgent inquiries, please contact our support team._
 > 
-
-> *Create an incident on statuspage.io based on the reformatted message above.*
+> _Create an incident on statuspage.io based on the reformatted message above._
 > 
 
 As shown in the visualization below, the agent first uses the “Get All Status Pages” operation to retrieve your list of status pages, then uses “Create Incident” to post the outage message as an incident:
 
-![Screenshot 2025-04-12 at 12.24.07.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.24.07.png)
+![img_11](/images/tutorial-3/xp_img_11.png)
 
 And just like that, the agent successfully creates a new incident on your StatusPage! If you head over to your StatusPage, you'll see the incident live:
 
-![Screenshot 2025-04-12 at 12.29.04.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.29.04.png)
+![img_12](/images/tutorial-3/xp_img_12.png)
 
 ### Incorporating Human-in-the-Loop into the Statuspage Incident Manager Agent
 
@@ -179,29 +174,29 @@ To add HITL:
 2. Choose “Built-in actions”, then select “Human Approval”.
 3. Place this action between the “Get All Status Pages” and “Create Incident” operations, as shown below:
 
-![Screenshot 2025-04-12 at 12.31.19.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.31.19.png)
+![img_13](/images/tutorial-3/xp_img_13.png)
 
 Next, we need to specify where the agent should send the approval request. Click on the Human Approval node, and choose the interface you'd like to use. Since we've already integrated Slack, we can select Slack and specify the user(s) or channel that should receive the request. Also, don’t forget to specify the approval title and approval description in the provided fields.
 
-![Screenshot 2025-04-12 at 12.40.08.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.40.08.png)
+![img_14](/images/tutorial-3/xp_img_14.png)
 
 Now we can re-deploy the agent by clicking the “Deploy” button. When you test the agent again, you’ll notice a new behavior: after retrieving the status pages, the agent waits for your approval before proceeding to create the incident.
 
-![Screenshot 2025-04-12 at 12.44.24.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.44.24.png)
+![img_15](/images/tutorial-3/xp_img_15.png)
 
 If you switch over to Slack, you’ll see an approval request sent from xpander. The message includes the content of the incident, along with options to approve or reject the request.
 
-![Screenshot 2025-04-12 at 15.49.39.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_15.49.39.png)
+![img_16](/images/tutorial-3/xp_img_16.png)
 
 Once you approve the request, the agent resumes execution. If you check your StatusPage, you’ll see a new incident has been created.
 
-![Screenshot 2025-04-12 at 15.50.49.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_15.50.49.png)
+![img_17](/images/tutorial-3/xp_img_17.png)
 
 ### Testing Outage Workflow Processor Agent
 
 After confirming that each individual agent behaves as expected, it’s time to test the Outage Workflow Processor agent. This agent acts as the manager, orchestrating the entire multi-agent system by delegating sub-tasks to the appropriate agents. We can test it using the following prompt:
 
-> *Search for messages about outages in the #outage channel. Then, find the "Outage Template" docs in Google Docs and take a look at its content. Then, reformat the outage notification according to the template. Then, create an incident on StatusPage based on the reformatted message.*
+> _Search for messages about outages in the #outage channel. Then, find the "Outage Template" docs in Google Docs and take a look at its content. Then, reformat the outage notification according to the template. Then, create an incident on StatusPage based on the reformatted message._
 > 
 
 As shown in the visualization below, here’s how the agent coordinates the workflow:
@@ -210,7 +205,7 @@ As shown in the visualization below, here’s how the agent coordinates the work
 - It then passes the message to the Google Drive Template Processor agent, which locates the "Outage Template" document in Google Drive and reformats the message according to the structure in the template.
 - Finally, it hands the reformatted message off to the Statuspage Incident Manager agent, which creates a new incident on StatusPage. This happens only after the human approval step is completed.
 
-![Screenshot 2025-04-12 at 12.58.03.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.58.03.png)
+![img_18](/images/tutorial-3/xp_img_18.png)
 
 ## Interacting with the Multi-Agent System via xpander’s Python SDK
 
@@ -228,12 +223,11 @@ You’ll also need to install the required dependencies via `pip`, such as:
 pip install xpander-sdk openai python-dotenv
 ```
 
-> Replace openai with anthropic, google-generativeai, or another SDK if you're using a different model provider.
-> 
+<Tip> Replace openai with anthropic, google-generativeai, or another SDK if you're using a different model provider.</Tip>
 
 To find your xpander API key and agent ID, you need to switch over to your Workbench, select the agent you want to interact with, click on the “SDK” node at the top of the graph visualization , and finally click “Assign API Keys” to reveal your xpander API key and link it to the agent ID by ticking the box beside it.
 
-![Screenshot 2025-04-12 at 12.59.35.png](How%20to%20Build%20a%20Multi-Agent%20Outage%20Manager%20with%20xpa%201d2ad78b444680d6a362e746bc24b37d/Screenshot_2025-04-12_at_12.59.35.png)
+![img_19](/images/tutorial-3/xp_img_19.png)
 
 Next, create a `.env` file in the same directory as your Python script and add your credentials like this:
 
@@ -253,7 +247,7 @@ The Python script to call and run our agent itself is very simple.
 
 ```python
 
-from xpander_sdk import XpanderClient
+from xpan.der_sdk import XpanderClient
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
