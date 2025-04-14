@@ -26,7 +26,7 @@ Once you're logged in, you'll see the landing page of xpander Workbench. To star
 
 In our use case, we’ll build an AI agent that can take a user message and transform it into a format that matches a Google Docs template stored on Google Drive. Here’s an example of the prompt we can give to the Planner:
 
-> _“Build one AI agent that is able to list all the files on Google Drive, find the appropriate Google Docs template for a given input message, and reformat the input message according to the template in the document.”_
+> _Build one AI agent that is able to list all the files on Google Drive, find the appropriate Google Docs template for a given input message, and reformat the input message according to the template in the document._
 
 Once you've entered the prompt, click the **“Build AI Agent”** button. In just a few seconds, the Planner will generate the agent for you. In the end, you should see a ready-to-run AI agent represented in a graph similar to the following:
 
@@ -72,9 +72,9 @@ There are several ways to interact with your AI agent in xpander: Chat, SDK, and
 
 Let’s say we want to test the agent with the following prompt:
 
-> Message: "David will have a business meeting with the marketing team at 10:30 AM on April 12, 2025, at the main meeting room in the office. The meeting is expected to last 2 hours."
+> _Message: "David will have a business meeting with the marketing team at 10:30 AM on April 12, 2025, at the main meeting room in the office. The meeting is expected to last 2 hours."_
 >
-> Can you reformat the message above according to the template in the 'Meeting Schedule Summary' document? Please write the reformatted text here, but don't write the output in a new Google Docs.
+> _Can you reformat the message above according to the template in the 'Meeting Schedule Summary' document? Please write the reformatted text here, but don't write the output in a new Google Docs._
 
 And the Google Docs template we’re working with (stored on Google Drive) looks like this:
 
@@ -116,10 +116,10 @@ In our use case, we want the agent to send the message via email after it finish
 
 Once you’ve made changes to the graph, you’ll need to re-deploy the agent before testing it. Just click the “Deploy” button, and you’re ready to go. You can now test the updated workflow with a prompt like the following:
 
-> Message: "David will have a business meeting with the marketing team at 10:30 AM on April 12, 2025, at the main meeting room in the office. The meeting is expected to last 2 hours.”
+> _Message: "David will have a business meeting with the marketing team at 10:30 AM on April 12, 2025, at the main meeting room in the office. The meeting is expected to last 2 hours.”_
 >
-> Can you reformat the message above according to the template in the 'Meeting Schedule Summary' document?
-> Please send the reformatted message to [mrubenw@zohomail.eu](mailto:mrubenw@zohomail.eu) and write the reformatted text here as well.
+> _Can you reformat the message above according to the template in the 'Meeting Schedule Summary' document?_
+> _Please send the reformatted message to [mrubenw@zohomail.eu](mailto:mrubenw@zohomail.eu) and write the reformatted text here as well._
 
 As you can see in the image below, after reformatting the message using the “Retrieve Latest Document Version” operation, the agent now uses the newly added “Send Email with Content” operation to send the result to the specified email address.
 
