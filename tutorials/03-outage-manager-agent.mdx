@@ -116,7 +116,8 @@ Let’s say we’ve saved the outage message template in a Google Docs file titl
 
 This agent's job is to find that document, read its content, and reformat the raw outage notification based on the structure in the template. To test the agent’s workflow, you can use a prompt like:
 
-> _Message: "We are experiencing 'InsufficientCapacityError' when trying to launch a SageMaker endpoint in a eu-central-1 region with ml.g5.12x large instance.”_                       Find the "Outage Template" document in Google Docs and read its content. Then, reformat the outage notification above according to the template. Finally, write me the reformatted message here.*
+> _Message: "We are experiencing 'InsufficientCapacityError' when trying to launch a SageMaker endpoint in a eu-central-1 region with ml.g5.12x large instance.”_                      
+> _Find the "Outage Template" document in Google Docs and read its content. Then, reformat the outage notification above according to the template. Finally, write me the reformatted message here._
 > 
 
 Here’s how the agent processes this:
